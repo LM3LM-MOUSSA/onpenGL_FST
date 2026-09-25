@@ -9,7 +9,9 @@ class window_
 {
 public:
     window_(int width, int height, const char* title);
+    window_(bool toggle);
     ~window_();
+    int create_window_full();
     int glfw_window_creation();
     void input(GLFWwindow* window);
     void draw(GLFWwindow* window);

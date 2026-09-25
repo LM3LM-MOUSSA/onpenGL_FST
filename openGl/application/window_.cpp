@@ -62,5 +62,10 @@ window_::window_(int width, int height, const char* title)
 {
 	std::cout << "Window created with width: " << width << ", height: " << height << ", title: " << title << std::endl;
 }
+window_::window_(bool toggle )
+
+{
+	
+}
 
 window_::~window_(){};
