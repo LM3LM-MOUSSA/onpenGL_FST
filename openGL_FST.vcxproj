@@ -82,10 +82,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="openGl\application\buffer.cpp" />
     <ClCompile Include="openGl\application\application.cpp" />
     <ClCompile Include="openGl\application\window_.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="openGl\dependance\buffer.h" />
+    <ClInclude Include="openGl\dependance\core_includes.h" />
+    <ClInclude Include="openGl\dependance\vortex_loader.h" />
     <ClInclude Include="openGl\dependance\window_.h" />
   </ItemGroup>
   <ItemGroup>
