@@ -1,14 +1,25 @@
 #pragma once
 #include "core_includes.h"
+struct shader_status
+{
+	int SH_deleltStatus;
+	int SH_compailtStatus;
+	int SH_length;
+	int SH_type;
+	int SH_srclength;
+
+	shader_status() : SH_deleltStatus(0), SH_compailtStatus(0), SH_lenght(0), SH_type(0), SH_srclenght(0) {};
+};
+
 class shaders
 {
 public:
 	shaders(const char& Vertex_SH , const char& Fragment_SH);
 	~shaders();
 	unsigned int Compaile_Shader ();
-	std::string Compaile_status(unsigned int m_type);
+	void  Compaile_status(shader_status& sh_status);
 	
-	void destroy_shader(int destroy);
+	int destroy_shader(unsigned int m_Shader);
 	void destroy_program();
 private: 
 	const char* m_VertexShaderSource;

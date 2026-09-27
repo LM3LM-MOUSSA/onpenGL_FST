@@ -14,53 +14,71 @@ shaders::~shaders()
     
     
 }
-unsigned int shaders::Compaile_Shader(int destroy) 
+unsigned int shaders::Compaile_Shader() 
 {
+    
     m_ShProgram = glCreateProgram();
-    // ymkn yssir errure kybda m_FragmentShaderSource much meyoufech b nulltreminter {\0}
     m_VertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(m_VertexShader,1,&m_FragmentShaderSource,nullptr);
+    glShaderSource(m_VertexShader,1,&m_VertexShaderSource,nullptr);
     glCompileShader(m_VertexShader);
     m_FragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(m_FragmentShader,1,&m_FragmentShaderSource,nullptr);
     glCompileShader(m_FragmentShader);
-    // check status b func shaders::Compaile_status//
+
+
+    shader_status VertexShader_status();
+    shader_status FragmentShader_status();
+    Compaile_status(VertexShader_status);
+    Compaile_status(FragmentShader_status);
+
+
+    if (VertexShader_status.SH_compailtStatus == GL_FALSE) {
+        std::cout
+            << "Vertex Shader Error: FALAID TO COMPAILE -verfie the src  \n  "
+            << std::endl;
+        destroy_shader(m_VertexShader);
+        return 0;
+    }
+    if (FragmentShader_status.SH_compailtStatus == GL_FALSE) {
+        std::cout
+            << "Fragment Shader Error: " 
+            << std::endl;
+        destroy_shader(m_FragmentShader);
+        return 0;
+    }
     glAttachShader(m_ShProgram,m_VertexShader);
     glAttachShader(m_ShProgram, m_FragmentShader);
     glLinkProgram(m_ShProgram);
     glValidateProgram(m_ShProgram);
-    if (destroy == 1) 
-    {
-        destroy_shader();
-    }
+   
 
     return m_ShProgram;
     
 }
- std::string shaders::Compaile_status(unsigned int m_type) 
+void shaders::Compaile_status(shader_status& sh_status)
 {
-    int status = 0;
-    glGetShaderiv(m_type, GL_COMPILE_STATUS, &status);
-    if (status == GL_FALSE)
-    {
-        int length = 0;
-        glGetShaderiv(m_type, GL_INFO_LOG_LENGTH, &length);
-        
-        std::string errorLog(length, ' ');
-        errorlog = std::string(m_type);
-        glGetShaderInfoLog(m_type, length, nullptr, &errorLog[1]);
-        return  errorLog;
-
-    }
-    return "NULL";
+    ;
+    glGetShaderiv(m_Shadertype, GL_SHADER_TYPE, &sh_status.SH_type);
+    glGetShaderiv(m_Shadertype, GL_INFO_LOG_LENGTH, &sh_status.SH_length);
+    glGetShaderiv(m_Shadertype, GL_SHADER_SOURCE_LENGTH, &sh_status.SH_srclength);
+    glGetShaderiv(m_Shadertype, GL_COMPILE_STATUS, &sh_status.SH_compailtStatus);
    
 }
 
-void shaders::destroy_shader() 
+int shaders::destroy_shader(unsigned int m_Shadertype)
 {
-    glDeleteShader(m_VertexShader);
-    glDeleteShader(m_FragmentShader);
-   
+    if (m_Shadertype == m_VertexShader)
+    {
+        glDeleteShader(m_VertexShader);
+        return 1;
+    }
+    else if (m_Shadertype == m_FragmentShader)
+    {
+        glDeleteShader(m_FragmentShader);
+        return 1; 
+    }
+    
+        return 0; 
 }
 void shaders::destroy_program() 
 {
