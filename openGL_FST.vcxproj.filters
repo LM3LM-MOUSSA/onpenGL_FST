@@ -35,7 +35,7 @@
     <ClInclude Include="openGl\dependance\core_includes.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="openGl\dependance\vortex_loader.h">
+    <ClInclude Include="openGl\dependance\vertex_loader.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

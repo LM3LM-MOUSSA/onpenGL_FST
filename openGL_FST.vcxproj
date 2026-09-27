@@ -89,7 +89,7 @@
   <ItemGroup>
     <ClInclude Include="openGl\dependance\buffer.h" />
     <ClInclude Include="openGl\dependance\core_includes.h" />
-    <ClInclude Include="openGl\dependance\vortex_loader.h" />
+    <ClInclude Include="openGl\dependance\vertex_loader.h" />
     <ClInclude Include="openGl\dependance\window_.h" />
   </ItemGroup>
   <ItemGroup>
