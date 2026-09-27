@@ -6,6 +6,10 @@ public:
 	shaders(const char& Vertex_SH , const char& Fragment_SH);
 	~shaders();
 	unsigned int Compaile_Shader ();
+	std::string Compaile_status(unsigned int m_type);
+	
+	void destroy_shader(int destroy);
+	void destroy_program();
 private: 
 	const char* m_VertexShaderSource;
 	const char* m_FragmentShaderSource;
