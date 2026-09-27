@@ -41,7 +41,7 @@ unsigned int shaders::Compaile_Shader()
     }
     if (FragmentShader_status.SH_compailtStatus == GL_FALSE) {
         std::cout
-            << "Fragment Shader Error: " 
+            << "Fragment Shader Error: -verfie the src  \n" 
             << std::endl;
         destroy_shader(m_FragmentShader);
         return 0;
