@@ -1,5 +1,6 @@
 #pragma once
 #include "core_includes.h"
+#include "buffer.h"
 
 
 #define WIDTH 800
@@ -12,9 +13,10 @@ public:
     window_(bool toggle);
     ~window_();
     int create_window_full();
-    int glfw_window_creation();
+    int glfw_window_creation(buffer* BUFFER_OBEJECT);
     void input(GLFWwindow* window);
     void draw(GLFWwindow* window);
+    int window_status(GLFWwindow* window);
 private:
     int width = WIDTH;
     int height = HEIGHT;

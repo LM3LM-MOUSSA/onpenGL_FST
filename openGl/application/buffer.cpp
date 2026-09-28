@@ -9,7 +9,7 @@ void buffer::create_buffer() {
 	glGenBuffers(1, &VBO);
 }
 
-void buffer::bind_buffer(vector_3 &v3) {
+ void buffer::bind_buffer( vector_3 &v3) {
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(v3), &v3, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
