@@ -1,5 +1,10 @@
 #include "shaders.h"
+#include <fstream>
+ void shaders::PraseShader(const std::string& filePath)
+{
 
+
+}
 shaders::shaders(const char* Vertex_SH, const char* Fragment_SH)
     :
       m_ShProgram(0),

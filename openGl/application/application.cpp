@@ -5,10 +5,10 @@
 int main() {
 	
 	shader_status Shaders_STATUS = shader_status();
-	Default_shader Df_Shaders = Default_shader();
+	
 	std::unique_ptr<window_> window(new window_(800, 600, "Test"));
 	std::unique_ptr<buffer> glBuffer(new buffer(1));
-	std::unique_ptr<shaders> sheder_VER_FRAG (new shaders(Df_Shaders.vertex_shader_src.c_str(), Df_Shaders.fragment_shader_src.c_str()));
+	std::unique_ptr<shaders> sheder_VER_FRAG (new shaders());
 	window->window_init();
 	sheder_VER_FRAG->Compaile_Shader();
 	sheder_VER_FRAG->Compaile_status(Shaders_STATUS);
