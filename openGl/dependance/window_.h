@@ -1,7 +1,7 @@
 #pragma once
 #include "core_includes.h"
 #include "buffer.h"
-
+#include "shaders.h"
 
 #define WIDTH 800
 #define HEIGHT 600
@@ -13,11 +13,13 @@ public:
     window_(bool toggle);
     ~window_();
     int create_window_full();
-    int glfw_window_creation(buffer* BUFFER_OBEJECT);
-    void input(GLFWwindow* window);
-    void draw(GLFWwindow* window);
-    int window_status(GLFWwindow* window);
+    int window_init();
+    int glfw_window_creation(buffer* BUFFER_OBEJ, shaders* CHADER_OBJ);
+    void input();
+    void draw();
+    int window_status();
 private:
+    GLFWwindow* m_window;
     int width = WIDTH;
     int height = HEIGHT;
     const char* title = TITLE;
