@@ -34,9 +34,12 @@ int window_::window_init()
 }
 void window_::input() {
 
-	if (glfwWindowShouldClose(m_window))
+	if (!glfwWindowShouldClose(m_window))
 	{
 		glfwPollEvents();
+		
+	}
+	else {
 		runnig = false;
 	}
 }
@@ -49,11 +52,6 @@ void window_::draw() {
 
 int window_::glfw_window_creation(buffer* BUFFER_OBEJ , shaders* CHADER_OBJ) 
 {
-	if (window_init() == 0) 
-	{
-		return 1;
-	}
-	
 	BUFFER_OBEJ->create_buffer();
 	BUFFER_OBEJ->bind_buffer(v3);
 	std::cout << "[INFO]::GLBUFFER CREATED AND BIND SUCCESSFULLY \n [INFO]::STARTING DRAWING" << std::endl;
