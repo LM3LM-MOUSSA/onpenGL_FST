@@ -8,7 +8,7 @@ int main() {
 	
 	std::vector<std::string> shaderSources = LoadShaders
 	(
-		"F:\dev\openGL_FST\openGl\RES\shaders\BASIC_SHADERS.shader"
+		"SHADER_SRC\BASIC_SHADERS.shader"
 	);
 	std::cout 
 		<< "[INFO]::SHADERS SRC : \t "
