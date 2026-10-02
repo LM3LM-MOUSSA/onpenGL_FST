@@ -7,6 +7,7 @@ struct shader_status
 	int SH_length;
 	int SH_type;
 	int SH_srclength;
+	
 
 	shader_status() : SH_deleltStatus(0), SH_compailtStatus(0), SH_length(0), SH_type(0), SH_srclength(0) {};
 };
@@ -14,7 +15,7 @@ struct shader_status
 class shaders
 {
 public:
-	shaders(const char* Vertex_SH , const char* Fragment_SH);
+	shaders(std::vector<std::string> shaderSources);
 
 	~shaders();
 	void Compaile_Shader ();
@@ -22,7 +23,7 @@ public:
 	unsigned int use_program();
 	int destroy_shader(unsigned int m_Shader);
 	void destroy_program();
-	void PraseShader(const std::string& filePath);
+	
 private: 
 	const char* m_VertexShaderSource;
 	const char* m_FragmentShaderSource;
