@@ -27,6 +27,12 @@
     <ClCompile Include="openGl\application\render.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="openGl\application\shaders.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="openGl\dependance\Shader Src Expractor .h">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="openGl\dependance\window_.h">
@@ -47,5 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+    <None Include="openGl\RES\shaders\BASIC_SHADERS.shader" />
   </ItemGroup>
 </Project>

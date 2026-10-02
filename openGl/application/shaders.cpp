@@ -1,13 +1,15 @@
 #include "shaders.h"
+#include "Shader Src Expractor .h"
 
-shaders::shaders(const char* Vertex_SH, const char* Fragment_SH)
+
+shaders::shaders(std::vector<std::string> shaderSources)
     :
       m_ShProgram(0),
       m_VertexShader(0),
       m_FragmentShader(0)
 {
-    m_FragmentShaderSource = Fragment_SH;
-    m_VertexShaderSource = Vertex_SH;
+    m_FragmentShaderSource = shaderSources[SHADER_FRAGMENT].c_str();
+    m_VertexShaderSource = shaderSources[SHADER_VERTEX].c_str();
 }
 shaders::~shaders() 
 {
@@ -35,6 +37,8 @@ void shaders::Compaile_Shader()
     if (VertexShader_status.SH_compailtStatus == GL_FALSE) {
         std::cout
             << "[ERROR]::Vertex Shader Error: FALAID TO COMPAILE -verfie the src  \n  "
+            << "see with the follwing  source code "
+            << m_VertexShaderSource
             << std::endl;
         destroy_shader(m_VertexShader);
         return;
@@ -42,10 +46,13 @@ void shaders::Compaile_Shader()
     if (FragmentShader_status.SH_compailtStatus == GL_FALSE) {
         std::cout
             << "[ERROR]::Fragment Shader Error: -verfie the src  \n"
+            << "see with the follwing  source code "
+            << m_FragmentShaderSource
             << std::endl;
         destroy_shader(m_FragmentShader);
         return;
     }
+
     glAttachShader(m_ShProgram,m_VertexShader);
     glAttachShader(m_ShProgram, m_FragmentShader);
     glLinkProgram(m_ShProgram);
