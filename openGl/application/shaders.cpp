@@ -2,7 +2,7 @@
 #include "Shader Src Expractor .h"
 
 
-shaders::shaders(std::vector<std::string> shaderSources)
+shaders::shaders(const std::vector<std::string> &shaderSources)
     :
       m_ShProgram(0),
       m_VertexShader(0),

@@ -6,11 +6,11 @@
 
 int main() {
 	
-	std::vector<std::string> shaderSources = LoadShaders
+	const std::vector<std::string> shaderSources = LoadShaders
 	(
-		"SHADER_SRC\BASIC_SHADERS.shader"
+		"openGl/SHADER_SRC/BASIC_SHADERS.shader"
 	);
-	std::cout 
+	std::cout
 		<< "[INFO]::SHADERS SRC : \t "
 		<< "VERTEX SHADER SRC : \n" << shaderSources[SHADER_VERTEX] << "\n"
 		<< "FRAGMENT SHADER SRC : \n" << shaderSources[SHADER_FRAGMENT] << "\n"

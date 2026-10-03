@@ -15,7 +15,7 @@ struct shader_status
 class shaders
 {
 public:
-	shaders(std::vector<std::string> shaderSources);
+	shaders(const std::vector<std::string> &shaderSources);
 
 	~shaders();
 	void Compaile_Shader ();

@@ -61,7 +61,7 @@
 	  <SubSystem>Console</SubSystem>
 	  <GenerateDebugInformation>true</GenerateDebugInformation>
 	  <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib</AdditionalDependencies>
-	  <AdditionalLibraryDirectories>$(SolutionDir)openGl/dependance/GLEW/lib/Release/x64;$(solutionDir)openGl/dependance/GLFW/lib-vc2026</AdditionalLibraryDirectories>
+	  <AdditionalLibraryDirectories>$(SolutionDir)openGl/dependance/GLEW/lib/Release/Win32;$(SolutionDir)openGl/dependance/GLFW/lib-vc2026</AdditionalLibraryDirectories>
 	</Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -78,7 +78,7 @@
 	  <SubSystem>Console</SubSystem>
 	  <GenerateDebugInformation>true</GenerateDebugInformation>
 	  <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib</AdditionalDependencies>
-	  <AdditionalLibraryDirectories>$(SolutionDir)openGl/dependance/GLEW/lib/Release/x64;$(solutionDir)openGl/dependance/GLFW/lib-vc2026</AdditionalLibraryDirectories>
+	  <AdditionalLibraryDirectories>$(SolutionDir)openGl/dependance/GLEW/lib/Release/Win32;$(SolutionDir)openGl/dependance/GLFW/lib-vc2026</AdditionalLibraryDirectories>
 	</Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -94,6 +94,8 @@
 	<ClInclude Include="openGl\dependance\vertex_loader.h" />
 	<ClInclude Include="openGl\dependance\window_.h" />
 	<ClInclude Include="openGl\dependance\render.h" />
+	<ClInclude Include="openGl\dependance\shaders.h" />
+	<ClInclude Include="openGl\dependance\Shader Src Expractor .h" />
   </ItemGroup>
   <ItemGroup>
 	<None Include="cpp.hint" />
