@@ -1,0 +1,46 @@
+# ==============================================================================
+# 1st Engine - .gitignore
+# ==============================================================================
+
+# --- Build Artifacts ----------------------------------------------------------
+build/
+*.o
+*.obj
+*.exe
+*.dll
+*.lib
+*.a
+*.so
+*.out
+
+# --- VS Code ------------------------------------------------------------------
+.vscode/*
+# Keep our checked-in configurations:
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/c_cpp_properties.json
+
+# --- C/C++ IntelliSense -------------------------------------------------------
+.cache/
+compile_commands.json
+
+# --- MSYS2 / MinGW ------------------------------------------------------------
+*.stackdump
+
+# --- OS Generated Files -------------------------------------------------------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# --- IDE / Editor Files -------------------------------------------------------
+*.swp
+*.swo
+*~
+*.bak
+*.tmp
+
+# --- Dependencies (managed separately) ----------------------------------------
+# third_party/ is tracked but large binaries inside may be ignored
+# third_party/**/*.dll
+# third_party/**/*.lib

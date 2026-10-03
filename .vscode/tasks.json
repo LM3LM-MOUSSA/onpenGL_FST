@@ -1,0 +1,38 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build 1st Engine",
+            "type": "shell",
+            "command": "pmake",
+            "args": ["build"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Clean Build",
+            "type": "shell",
+            "command": "pmake",
+            "args": ["clean"],
+            "problemMatcher": []
+        },
+        {
+            "label": "Rebuild 1st Engine",
+            "type": "shell",
+            "command": "pmake",
+            "args": ["rebuild"],
+            "problemMatcher": ["$gcc"]
+        }
+    ]
+}
