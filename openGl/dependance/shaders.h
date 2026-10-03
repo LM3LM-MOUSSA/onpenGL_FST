@@ -1,5 +1,6 @@
 #pragma once
 #include "core_includes.h"
+#include <vector>
 struct shader_status
 {
 	int SH_deleltStatus;
@@ -14,7 +15,7 @@ struct shader_status
 class shaders
 {
 public:
-	shaders(const char* Vertex_SH , const char* Fragment_SH);
+	shaders(std::vector<std::string> shaderSources);
 
 	~shaders();
 	void Compaile_Shader ();
