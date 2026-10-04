@@ -16,8 +16,14 @@ inline std::vector<std::string> LoadShaders(const char* path)
     std::vector<std::string> shaders(2);
 
     
-    FILE* f = std::fopen(path, "rb");
+    FILE* f = nullptr;
+#ifdef _MSC_VER
+    errno_t err = fopen_s(&f, path, "rb");
+    if (err != 0 || !f)
+#else
+    f = std::fopen(path, "rb");
     if (!f)
+#endif
     {
         std::perror("LoadShaders: fopen failed");
         return shaders;

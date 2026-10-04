@@ -2,14 +2,14 @@
 #include "Shader Src Expractor .h"
 
 
-shaders::shaders(std::vector<std::string> shaderSources)
+shaders::shaders(const std::vector<std::string> *shaderSources)
     :
       m_ShProgram(0),
       m_VertexShader(0),
       m_FragmentShader(0)
 {
-    m_FragmentShaderSource = shaderSources[SHADER_FRAGMENT].c_str();
-    m_VertexShaderSource = shaderSources[SHADER_VERTEX].c_str();
+    m_FragmentShaderSource = shaderSources->at(SHADER_FRAGMENT).c_str();
+    m_VertexShaderSource = shaderSources->at(SHADER_VERTEX).c_str();
 }
 shaders::~shaders() 
 {
@@ -19,19 +19,35 @@ shaders::~shaders()
 void shaders::Compaile_Shader() 
 {
     
-    m_ShProgram = glCreateProgram();
-    m_VertexShader = glCreateShader(GL_VERTEX_SHADER);
+    m_ShProgram      = glCreateProgram();
+    m_VertexShader   = glCreateShader(GL_VERTEX_SHADER);
+    m_FragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    if (m_VertexShaderSource == NULL)
+    {
+        std::cout 
+            << "[ERROR]::Vertex Shader Error: NULL SOURCE \n" 
+            << "see with the follwing  source code " << m_VertexShaderSource
+            << std::endl;
+        return;
+    }
+    if (m_FragmentShaderSource == NULL)
+    {
+        std::cout
+            << "[ERROR]::Fragment Shader Error: NULL SOURCE \n"
+            << "see with the follwing  source code " << m_FragmentShaderSource
+            << std::endl;
+        return;
+    }
     glShaderSource(m_VertexShader,1,&m_VertexShaderSource,nullptr);
     glCompileShader(m_VertexShader);
-    m_FragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(m_FragmentShader,1,&m_FragmentShaderSource,nullptr);
     glCompileShader(m_FragmentShader);
 
 
     shader_status VertexShader_status;
     shader_status FragmentShader_status;
-    Compaile_status(VertexShader_status);
-    Compaile_status(FragmentShader_status);
+    Compaile_status(VertexShader_status, m_VertexShader);
+    Compaile_status(FragmentShader_status, m_FragmentShader);
 
 
     if (VertexShader_status.SH_compailtStatus == GL_FALSE) {
@@ -62,18 +78,19 @@ void shaders::Compaile_Shader()
     
     
 }
-void shaders::Compaile_status(shader_status& sh_status)
+void shaders::Compaile_status(shader_status& sh_status, unsigned int m_Shadertype)
 {
     ;
-    glGetShaderiv(m_VertexShader, GL_SHADER_TYPE, &sh_status.SH_type);
-    glGetShaderiv(m_VertexShader, GL_INFO_LOG_LENGTH, &sh_status.SH_length);
-    glGetShaderiv(m_VertexShader, GL_SHADER_SOURCE_LENGTH, &sh_status.SH_srclength);
-    glGetShaderiv(m_VertexShader, GL_COMPILE_STATUS, &sh_status.SH_compailtStatus);
+    glGetShaderiv(m_Shadertype, GL_SHADER_TYPE, &sh_status.SH_type);
+    glGetShaderiv(m_Shadertype, GL_INFO_LOG_LENGTH, &sh_status.SH_length);
+    glGetShaderiv(m_Shadertype, GL_SHADER_SOURCE_LENGTH, &sh_status.SH_srclength);
+    glGetShaderiv(m_Shadertype, GL_COMPILE_STATUS, &sh_status.SH_compailtStatus);
 
 }
 
 int shaders::destroy_shader(unsigned int m_Shadertype)
 {
+    
     if (m_Shadertype == m_VertexShader)
     {
         glDeleteShader(m_VertexShader);

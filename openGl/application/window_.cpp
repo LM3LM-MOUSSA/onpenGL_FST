@@ -2,8 +2,24 @@
 #include "window_.h"
 #include "buffer.h"
 #include "shaders.h"
-vector_3 v3 = vector_3();
+// temp 
+float vestices[] =
+{
+	-0.5f, -0.5f, 0.0f
+	,0.5f, -0.5f, 0.0f
+	,0.0f, 0.5f, 0.0f
+};
+//
 bool runnig = true;
+
+int window_::create_window_full()
+{
+	if (window_init() != 1) {
+		return 0;
+	}
+	return 1;
+}
+
 int window_::window_init()
 {
 	std::cout << " [INFO]::initializing GLFW " << std::endl;
@@ -50,19 +66,19 @@ void window_::draw() {
 	glfwSwapBuffers(m_window);
 }
 
-int window_::glfw_window_creation(buffer* BUFFER_OBEJ , shaders* CHADER_OBJ) 
+int window_::glfw_window_creation(buffer* BUFFER_OBEJ , shaders* SHADER_OBJ) 
 {
-	BUFFER_OBEJ->create_buffer();
-	BUFFER_OBEJ->bind_buffer(v3);
+	BUFFER_OBEJ->bind_buffer(vestices);
+	
 	std::cout << "[INFO]::GLBUFFER CREATED AND BIND SUCCESSFULLY \n [INFO]::STARTING DRAWING" << std::endl;
-	glUseProgram(CHADER_OBJ->use_program());
+	glUseProgram(SHADER_OBJ->use_program());
 	while (runnig)
 	{   
 		input();
 		draw();
 	}
 
-	BUFFER_OBEJ->unbind_buffer(v3);
+	BUFFER_OBEJ->unbind_buffer();
 	glfwTerminate();
 	std::cout << "[INFO]::WIDOW DISTROY AND GLFW TEMINETED" << std::endl;
 	return 0;

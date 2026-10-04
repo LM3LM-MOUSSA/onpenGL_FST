@@ -2,14 +2,16 @@
 #include "vertex_loader.h"
 class buffer
 {
-public :
+public:
 	buffer(int t_size_buffer);
 	~buffer();
 	void create_buffer();
-	void bind_buffer(vector_3 &v3);
-	void unbind_buffer(vector_3 &v3);
+	void bind_buffer(float vertices[]);
+	void unbind_buffer();
 	
 private:
 	unsigned int VBO ;
+	unsigned int VAO;
+	 
 };
 

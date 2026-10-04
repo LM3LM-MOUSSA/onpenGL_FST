@@ -30,29 +30,10 @@
     <ClCompile Include="openGl\application\shaders.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="openGl\dependance\Shader Src Expractor .h">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="openGl\dependance\window_.h">
+    <ClInclude Include="openGl\application\window_.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="openGl\dependance\buffer.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="openGl\dependance\core_includes.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="openGl\dependance\vertex_loader.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="openGl\dependance\render.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
-    <None Include="openGl\RES\shaders\BASIC_SHADERS.shader" />
   </ItemGroup>
 </Project>
