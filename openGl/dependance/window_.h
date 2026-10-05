@@ -14,7 +14,7 @@ public:
     ~window_();
     int create_window_full();
     int window_init();
-    int glfw_window_creation(buffer* BUFFER_OBEJ, shaders* CHADER_OBJ);
+    int glfw_window_creation(buffer* BUFFER_OBEJ_0,  shaders* CHADER_OBJ);
     void input();
     void draw();
     int window_status();

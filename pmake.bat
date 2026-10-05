@@ -1,39 +1,47 @@
 @echo off
 REM ===========================================================================
-REM pmake - Build wrapper for 1st Engine (main branch)
-REM ===========================================================================
-REM This script invokes mingw32-make (GNU Make from MSYS2 UCRT64) using
-REM 'pmakefile' as the build configuration file.
-REM
-REM Usage:
-REM   pmake          - Build the project
-REM   pmake build    - Build the project
-REM   pmake run      - Build and run
-REM   pmake clean    - Remove build artifacts
-REM   pmake rebuild  - Clean and rebuild
+REM pmake - Build wrapper - MSVC v145 / Visual Studio 2026
 REM ===========================================================================
 
-set PATH=C:\msys64\ucrt64\bin;%PATH%
+REM Charger l'environnement MSVC x64 avec le toolset v145
+call "C:\Program Files\Microsoft Visual Studio\18\Insiders\VC\Auxiliary\Build\vcvars64.bat"
+
+if %ERRORLEVEL% NEQ 0 (
+    echo.
+    echo [ERROR] Impossible de charger MSVC v145.
+    pause
+    exit /b 1
+)
+
+echo.
+echo [INFO] Compiler:
+where cl
+cl
+
+echo.
+echo [INFO] Building...
 
 if "%1"=="clean" (
-    mingw32-make -f pmakefile clean
+    nmake /F pmakefile clean
     pause
     exit /b
 )
 
 if "%1"=="rebuild" (
-    mingw32-make -f pmakefile rebuild
+    nmake /F pmakefile rebuild
 ) else (
-    mingw32-make -f pmakefile build
+    nmake /F pmakefile build
 )
 
 if %ERRORLEVEL% NEQ 0 (
-    echo Build failed!
+    echo.
+    echo [ERROR] Build failed!
     pause
-    exit /b
+    exit /b 1
 )
 
 echo.
-echo [RUN] Launching engine.exe directly...
+echo [RUN] Launching engine.exe...
 build\engine.exe
+
 pause

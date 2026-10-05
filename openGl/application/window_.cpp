@@ -2,7 +2,21 @@
 #include "window_.h"
 #include "buffer.h"
 #include "shaders.h"
-vector_3 v3 = vector_3();
+vector_3 v3 = 
+{
+{ -0.5f , -0.5f },
+{ 0.5f , -0.5f },
+{ 0.5f ,  0.5f },
+{ 0.5f ,  0.5f },
+{ -0.5f , 0.5f },
+{ -0.5f , -0.5f }
+
+};
+vector_3 v3_2 = 
+{
+
+
+};
 bool runnig = true;
 int window_::window_init()
 {
@@ -46,14 +60,15 @@ void window_::input() {
 
 void window_::draw() {
 	glClear(GL_COLOR_BUFFER_BIT);
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 	glfwSwapBuffers(m_window);
 }
 
-int window_::glfw_window_creation(buffer* BUFFER_OBEJ , shaders* CHADER_OBJ) 
+int window_::glfw_window_creation(buffer* BUFFER_OBEJ_0, shaders* CHADER_OBJ)
 {
-	BUFFER_OBEJ->create_buffer();
-	BUFFER_OBEJ->bind_buffer(v3);
+	BUFFER_OBEJ_0->create_buffer();
+	BUFFER_OBEJ_0->bind_buffer(v3);
+	
 	std::cout << "[INFO]::GLBUFFER CREATED AND BIND SUCCESSFULLY \n [INFO]::STARTING DRAWING" << std::endl;
 	glUseProgram(CHADER_OBJ->use_program());
 	while (runnig)
@@ -61,8 +76,8 @@ int window_::glfw_window_creation(buffer* BUFFER_OBEJ , shaders* CHADER_OBJ)
 		input();
 		draw();
 	}
-
-	BUFFER_OBEJ->unbind_buffer(v3);
+	BUFFER_OBEJ_0->unbind_buffer(v3);
+	
 	glfwTerminate();
 	std::cout << "[INFO]::WIDOW DISTROY AND GLFW TEMINETED" << std::endl;
 	return 0;

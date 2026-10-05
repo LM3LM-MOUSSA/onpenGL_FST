@@ -1,64 +1,92 @@
 # ==============================================================================
-# 1st Engine (main branch) - Build Configuration (pmakefile)
-# ==============================================================================
-# Usage:
-#   pmake          - Build the project (default)
-#   pmake build    - Build the project
-#   pmake run      - Build and run the executable
-#   pmake clean    - Remove all build artifacts
-#   pmake rebuild  - Clean and rebuild from scratch
+# 1st Engine (main branch) - Build Configuration (MSVC v145 / nmake)
 # ==============================================================================
 
 # --- Compiler Settings --------------------------------------------------------
-CXX       := g++
-CXXFLAGS  := -std=c++20 -Wall -Wextra -Wpedantic -g
-LDFLAGS   := -lglew32 -lglfw3 -lopengl32 -lgdi32
+CXX       = cl
+CXXFLAGS  = /std:c++20 /W3 /EHsc /Zi /MD /D GLEW_STATIC /D _CRT_SECURE_NO_WARNINGS /I"openGl\dependance\GLEW\include" /I"openGl\dependance\GLFW\include"
+LDFLAGS   = /link /NODEFAULTLIB:libcmt /LIBPATH:"openGl\dependance\GLEW\lib\Release\x64" /LIBPATH:"openGl\dependance\GLFW\lib-vc2026" glew32s.lib glfw3.lib opengl32.lib user32.lib gdi32.lib shell32.lib
 
 # --- Project Structure --------------------------------------------------------
-SRC_DIR   := openGl/application
-INC_DIR   := openGl/dependance
-BUILD_DIR := build
-TARGET    := $(BUILD_DIR)/engine.exe
+SRC_DIR   = openGl\application
+INC_DIR   = openGl\dependance
+BUILD_DIR = build
+TARGET    = $(BUILD_DIR)\engine.exe
 
-# --- Source Files -------------------------------------------------------------
-SOURCES   := $(wildcard $(SRC_DIR)/*.cpp)
-OBJECTS   := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SOURCES))
+# --- Object Files -------------------------------------------------------------
+OBJECTS = \
+    $(BUILD_DIR)\application.obj \
+    $(BUILD_DIR)\buffer.obj      \
+    $(BUILD_DIR)\render.obj      \
+    $(BUILD_DIR)\shaders.obj     \
+    $(BUILD_DIR)\window_.obj
 
 # ==============================================================================
 # Build Targets
 # ==============================================================================
 
-.PHONY: all
-all: build
-
-.PHONY: build
 build: $(TARGET)
-	@echo.
-	@echo [BUILD] Build complete: $(TARGET)
+    @echo.
+    @echo [BUILD] Build complete: $(TARGET)
 
+# ==============================================================================
 # Link
+# ==============================================================================
+
 $(TARGET): $(OBJECTS)
-	@echo [LINK] $@
-	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS)
+    @echo [LINK] $@
+    $(CXX) $(OBJECTS) /Fe:$@ $(LDFLAGS)
 
-# Compile each .cpp -> .o (includes both src dir and dependance dir for headers)
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
-	@if not exist "$(BUILD_DIR)" mkdir "$(BUILD_DIR)"
-	@echo [CXX]  $<
-	$(CXX) $(CXXFLAGS) -I$(INC_DIR) -c $< -o $@
+# ==============================================================================
+# Compile .cpp -> .obj
+# ==============================================================================
 
-.PHONY: run
+$(BUILD_DIR)\application.obj: $(SRC_DIR)\application.cpp
+    @if not exist "$(BUILD_DIR)" mkdir "$(BUILD_DIR)"
+    @echo [CXX] $**
+    $(CXX) $(CXXFLAGS) /I"$(INC_DIR)" /c $** /Fo$@
+
+$(BUILD_DIR)\buffer.obj: $(SRC_DIR)\buffer.cpp
+    @if not exist "$(BUILD_DIR)" mkdir "$(BUILD_DIR)"
+    @echo [CXX] $**
+    $(CXX) $(CXXFLAGS) /I"$(INC_DIR)" /c $** /Fo$@
+
+$(BUILD_DIR)\render.obj: $(SRC_DIR)\render.cpp
+    @if not exist "$(BUILD_DIR)" mkdir "$(BUILD_DIR)"
+    @echo [CXX] $**
+    $(CXX) $(CXXFLAGS) /I"$(INC_DIR)" /c $** /Fo$@
+
+$(BUILD_DIR)\shaders.obj: $(SRC_DIR)\shaders.cpp
+    @if not exist "$(BUILD_DIR)" mkdir "$(BUILD_DIR)"
+    @echo [CXX] $**
+    $(CXX) $(CXXFLAGS) /I"$(INC_DIR)" /c $** /Fo$@
+
+$(BUILD_DIR)\window_.obj: $(SRC_DIR)\window_.cpp
+    @if not exist "$(BUILD_DIR)" mkdir "$(BUILD_DIR)"
+    @echo [CXX] $**
+    $(CXX) $(CXXFLAGS) /I"$(INC_DIR)" /c $** /Fo$@
+
+# ==============================================================================
+# Run
+# ==============================================================================
+
 run: build
-	@echo.
-	@echo [RUN] Running $(TARGET)...
-	@echo ----------------------------------------
-	@$(TARGET)
+    @echo.
+    @echo [RUN] Running $(TARGET)...
+    @echo ----------------------------------------
+    @$(TARGET)
 
-.PHONY: clean
+# ==============================================================================
+# Clean
+# ==============================================================================
+
 clean:
-	@echo [CLEAN] Removing build artifacts...
-	@if exist "$(BUILD_DIR)" rmdir /s /q "$(BUILD_DIR)"
-	@echo [CLEAN] Done.
+    @echo [CLEAN] Removing build artifacts...
+    @if exist "$(BUILD_DIR)" rmdir /s /q "$(BUILD_DIR)"
+    @echo [CLEAN] Done.
 
-.PHONY: rebuild
+# ==============================================================================
+# Rebuild
+# ==============================================================================
+
 rebuild: clean build

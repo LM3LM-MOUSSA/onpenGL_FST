@@ -53,7 +53,7 @@
 	<ClCompile>
 	  <WarningLevel>Level3</WarningLevel>
 	  <SDLCheck>true</SDLCheck>
-	  <PreprocessorDefinitions>GLEW_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+	  <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 	  <ConformanceMode>true</ConformanceMode>
 	  <LanguageStandard>stdcpp20</LanguageStandard>
 	</ClCompile>
@@ -61,7 +61,7 @@
 	  <SubSystem>Console</SubSystem>
 	  <GenerateDebugInformation>true</GenerateDebugInformation>
 	  <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib</AdditionalDependencies>
-	  <AdditionalLibraryDirectories>$(SolutionDir)openGl/dependance/GLEW/lib/Release/Win32;$(SolutionDir)openGl/dependance/GLFW/lib-vc2026</AdditionalLibraryDirectories>
+	  <AdditionalLibraryDirectories>$(SolutionDir)openGl/dependance/GLEW/lib/Release/x64;$(SolutionDir)openGl/dependance/GLFW/lib-vc2026</AdditionalLibraryDirectories>
 	</Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -70,7 +70,7 @@
 	  <FunctionLevelLinking>true</FunctionLevelLinking>
 	  <IntrinsicFunctions>true</IntrinsicFunctions>
 	  <SDLCheck>true</SDLCheck>
-	  <PreprocessorDefinitions>GLEW_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+	  <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 	  <ConformanceMode>true</ConformanceMode>
 	  <LanguageStandard>stdcpp20</LanguageStandard>
 	</ClCompile>
@@ -78,7 +78,7 @@
 	  <SubSystem>Console</SubSystem>
 	  <GenerateDebugInformation>true</GenerateDebugInformation>
 	  <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib</AdditionalDependencies>
-	  <AdditionalLibraryDirectories>$(SolutionDir)openGl/dependance/GLEW/lib/Release/Win32;$(SolutionDir)openGl/dependance/GLFW/lib-vc2026</AdditionalLibraryDirectories>
+	  <AdditionalLibraryDirectories>$(SolutionDir)openGl/dependance/GLEW/lib/Release/x64;$(SolutionDir)openGl/dependance/GLFW/lib-vc2026</AdditionalLibraryDirectories>
 	</Link>
   </ItemDefinitionGroup>
   <ItemGroup>
