@@ -72,7 +72,7 @@ void shaders::Compaile_Shader()
         return;
     }
 
-    // Clean up individual shaders after successful linking
+    
     glDeleteShader(m_VertexShader);
     glDeleteShader(m_FragmentShader);
     
