@@ -2,7 +2,7 @@
 #include "core_includes.h"
 #include "buffer.h"
 #include "shaders.h"
-
+namespace engine{
 #define WIDTH 800
 #define HEIGHT 600
 #define TITLE "window"
@@ -10,13 +10,13 @@ class window_
 {
 public:
     window_(int width, int height, const char* title);
-    window_(bool toggle);
+
     ~window_();
-    int create_window_full();
+
     int window_init();
-    int glfw_window_creation(buffer* BUFFER_OBEJ_0,  shaders* CHADER_OBJ);
-    void input();
-    void draw();
+
+    GLFWwindow* Get_Window();
+   
     int window_status();
 private:
     GLFWwindow* m_window;
@@ -27,3 +27,4 @@ private:
 
 };
 
+}

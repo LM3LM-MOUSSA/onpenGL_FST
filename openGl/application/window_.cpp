@@ -2,22 +2,11 @@
 #include "window_.h"
 #include "buffer.h"
 #include "shaders.h"
-vector_3 v3 = 
+namespace engine {
+GLFWwindow* window_::Get_Window()
 {
-{ -0.5f , -0.5f },
-{ 0.5f , -0.5f },
-{ 0.5f ,  0.5f },
-{ 0.5f ,  0.5f },
-{ -0.5f , 0.5f },
-{ -0.5f , -0.5f }
-
-};
-vector_3 v3_2 = 
-{
-
-
-};
-bool runnig = true;
+		return m_window;
+}
 int window_::window_init()
 {
 	std::cout << " [INFO]::initializing GLFW " << std::endl;
@@ -46,42 +35,6 @@ int window_::window_init()
 		<< title << std::endl;
 	return 1;
 }
-void window_::input() {
-
-	if (!glfwWindowShouldClose(m_window))
-	{
-		glfwPollEvents();
-		
-	}
-	else {
-		runnig = false;
-	}
-}
-
-void window_::draw() {
-	glClear(GL_COLOR_BUFFER_BIT);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
-	glfwSwapBuffers(m_window);
-}
-
-int window_::glfw_window_creation(buffer* BUFFER_OBEJ_0, shaders* CHADER_OBJ)
-{
-	BUFFER_OBEJ_0->create_buffer();
-	BUFFER_OBEJ_0->bind_buffer(v3);
-	
-	std::cout << "[INFO]::GLBUFFER CREATED AND BIND SUCCESSFULLY \n [INFO]::STARTING DRAWING" << std::endl;
-	glUseProgram(CHADER_OBJ->use_program());
-	while (runnig)
-	{   
-		input();
-		draw();
-	}
-	BUFFER_OBEJ_0->unbind_buffer(v3);
-	
-	glfwTerminate();
-	std::cout << "[INFO]::WIDOW DISTROY AND GLFW TEMINETED" << std::endl;
-	return 0;
-}
 
 window_::window_(int width, int height, const char* title) 
 	:width(width), height(height), title(title) ,m_window(nullptr)
@@ -90,10 +43,15 @@ window_::window_(int width, int height, const char* title)
 }
 
 
-window_::~window_(){};
+window_::~window_()
+{
+	glfwTerminate();
+	std::cout << "[INFO]::WIDOW DISTROY AND GLFW TEMINETED" << std::endl;
+};
 int window_::window_status()
 {
 	
 	return 1;
 
+}
 }
