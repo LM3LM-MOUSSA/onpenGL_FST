@@ -14,6 +14,7 @@ int window_::window_init()
 		std::cerr << "[ERROR]::Failed to initialize GLFW" << std::endl;
 		return 0;
 	}
+	
 	std::cout << "[INFO]::starting window creation " << std::endl;
 	m_window =glfwCreateWindow(width, height, title, NULL, NULL);
 	if (!m_window) {
@@ -22,6 +23,7 @@ int window_::window_init()
 		return 0;
 	}
 	glfwMakeContextCurrent(m_window);
+	glfwSwapInterval(1);
 	if (glewInit() != GLEW_OK) {
 		std::cerr << "[ERROR]::Failed to initialize GLEW" << std::endl;
 		glfwDestroyWindow(m_window);
