@@ -16,6 +16,12 @@ static indexes indeses_obj = {
 	0, 1, 2,
 	2, 3, 0
 };
+struct rgb_CHANNELS {
+	float r = 0.0f;
+	float g = 0.0f;
+	float b = 0.0f;
+};
+
 render::render()
 {
 	const std::vector<std::string> shaderSources = LoadShaders
@@ -53,6 +59,21 @@ void render::_Drowing()
 	
 
 	glUseProgram(m_SHADER_OBJ->use_program());
+	int location = glGetUniformLocation(m_SHADER_OBJ->use_program(), "u_Color");
+	if (location == -1)
+	{
+		std::cout << "[ERROR]::Failed to get uniform location for u_Color" << std::endl;
+		return;
+	}
+	else
+		std::cout << "[INFO]::Uniform location for u_Color: \t "
+		<< "in the following location on the prog :"
+		<< location
+		<< location << std::endl;
+	static float  increment = 0.04f;
+	static rgb_CHANNELS rgb_channels = { 1.0f, 0.0f, 0.0f };
+
+	glUniform4f(location, rgb_channels.r, rgb_channels.g,rgb_channels.b, 1.0f);
 	while (m_runnig)
 	{	
 		if (glfwWindowShouldClose(m_window))
@@ -60,7 +81,21 @@ void render::_Drowing()
 			m_runnig = false;
 		}
 		glClear(GL_COLOR_BUFFER_BIT);
+		glUniform4f(location, rgb_channels.r, rgb_channels.g, rgb_channels.b, 1.0f);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+		if (rgb_channels.r > 1.0f && rgb_channels.g > 1.0f && rgb_channels.b > 1.0f)
+		{
+			increment = -0.04f;
+
+		}
+		else if (rgb_channels.r < 0.0f && rgb_channels.g < 0.0f && rgb_channels.b < 0.0f)
+		{
+			increment = 0.04f;
+		}
+			rgb_channels.r += increment;
+			rgb_channels.g += increment;
+			rgb_channels.b += increment;
+		
 		glfwSwapBuffers(m_window);
 		glfwPollEvents();
 
